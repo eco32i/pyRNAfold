@@ -33,7 +33,11 @@ htmlcov/
 .cache
 nosetests.xml
 coverage.xml
+test/*.txt
+data/
 
+# Ipython notebook checkpoints
+*checkpoints
 # Translations
 *.mo
 

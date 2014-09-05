@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from ggplot import *
 
 def compute_prob_vector(ps_file, prob_paired=True):
@@ -45,6 +46,13 @@ def trange_df(base_name, trange=range(35,43), abs_value=True):
         df['Temp'] = temp
         chunks.append(df)
     return pd.concat(chunks)
+
+def sig_positions(df, num_sigma=6):
+    mean = df['Diff'].mean()
+    sigma = df['Diff'].std()
+    threshold = num_sigma * sigma
+    return abs(df['Diff'] - mean) > threshold
+
 
 def compute_diff_df(base_name, trange=range(35,43), abs_value=True):
     '''
