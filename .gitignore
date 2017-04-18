@@ -34,10 +34,9 @@ htmlcov/
 nosetests.xml
 coverage.xml
 test/*.txt
-data/
 
 # Ipython notebook checkpoints
-*checkpoints
+*checkpoints/
 # Translations
 *.mo
 
@@ -56,3 +55,6 @@ data/
 # Sphinx documentation
 docs/_build/
 
+# Data files
+data/*.txt
+data/*.ps
