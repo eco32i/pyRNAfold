@@ -1,6 +1,9 @@
+#!/usr/bin/env python
+
 import pandas as pd
 import numpy as np
-from ggplot import *
+from  plotnine import *
+import argparse
 
 def compute_prob_vector(ps_file, prob_paired=True):
     '''
@@ -77,3 +80,25 @@ def plot_RSMD(df, trange=range(37,43)):
    df_sum['RMSD'] = [np.sqrt(((df[df['Temp'] == T]['Diff'])**2).sum()) for T in trange[1:]]
    p = ggplot(df_sum, aes(x='Temp', y='RMSD')) + geom_line()
    return p
+
+
+def main():
+    parser = argparse.ArgumentParser(description='''
+    pyRNAfold: analysis and visualization of RNAfold output.
+    '''
+    )
+
+    parser.add_argument('fasta_file', type=str, help='.fasta file with RNA
+    sequence)
+    parser.add_argument('-t1', '--temp-low', type=float, deafult=37.0, help='low
+    temperature for the range')
+    parser.add_argument('-t2', '--temp-high', type=float, default=43.0, help='high
+    temperature for the range.')
+
+    args = parser.parse_args()
+    kwargs = vars(args)
+
+# Run the actual script here.
+    
+if __name__ == "__main__":
+    main()
